@@ -1,9 +1,9 @@
 ﻿using System;
-using Anticaptcha_example.ApiResponse;
-using Anticaptcha_example.Helper;
 using Newtonsoft.Json.Linq;
+using Anticaptcha.ApiResponse;
+using Anticaptcha.Helper;
 
-namespace Anticaptcha_example.Api
+namespace Anticaptcha.Api
 {
     internal class FunCaptcha : AnticaptchaBase, IAnticaptchaTaskProtocol
     {

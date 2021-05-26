@@ -1,33 +1,29 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 
-namespace Anticaptcha_example.Helper
+namespace Anticaptcha.Helper
 {
     public class StringHelper
     {
         public static string ImageFileToBase64String(string path)
         {
-            try
+            if (File.Exists(path))
             {
-                using (var image = Image.FromFile(path))
+                // TODO: Add image check (by format and/or content)
+                try
                 {
-                    using (var m = new MemoryStream())
-                    {
-                        image.Save(m, image.RawFormat);
-                        var imageBytes = m.ToArray();
+                    var imageBytes = File.ReadAllBytes(path);
 
-                        // Convert byte[] to Base64 String
-                        var base64String = Convert.ToBase64String(imageBytes);
+                    // Convert byte[] to Base64 String
+                    var base64String = Convert.ToBase64String(imageBytes);
 
-                        return base64String;
-                    }
+                    return base64String;
                 }
+                catch
+                { }
             }
-            catch
-            {
-                return null;
-            }
+
+            return null;
         }
     }
 }

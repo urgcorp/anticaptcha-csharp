@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Anticaptcha_example.Helper;
+using Anticaptcha.Helper;
 using Newtonsoft.Json.Linq;
 
-namespace Anticaptcha_example.ApiResponse
+namespace Anticaptcha.ApiResponse
 {
     public class TaskResultResponse
     {
@@ -107,7 +107,7 @@ namespace Anticaptcha_example.ApiResponse
 
             try
             {
-                return (StatusType) Enum.Parse(
+                return (StatusType)Enum.Parse(
                     typeof(StatusType),
                     CultureInfo.CurrentCulture.TextInfo.ToTitleCase(status),
                     true
@@ -126,7 +126,7 @@ namespace Anticaptcha_example.ApiResponse
 
             var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
-            return dtDateTime.AddSeconds((double) unixTimeStamp).ToUniversalTime();
+            return dtDateTime.AddSeconds((double)unixTimeStamp).ToUniversalTime();
         }
 
         public class SolutionData

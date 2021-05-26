@@ -1,9 +1,9 @@
-﻿using Anticaptcha_example.ApiResponse;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using Anticaptcha.ApiResponse;
 
-namespace Anticaptcha_example.Api
+namespace Anticaptcha.Api
 {
     public class RecaptchaV2EnterpriseProxyless : AnticaptchaBase, IAnticaptchaTaskProtocol
     {

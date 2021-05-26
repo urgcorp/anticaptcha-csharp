@@ -1,8 +1,8 @@
 ﻿using System;
-using Anticaptcha_example.ApiResponse;
 using Newtonsoft.Json.Linq;
+using Anticaptcha.ApiResponse;
 
-namespace Anticaptcha_example.Api
+namespace Anticaptcha.Api
 {
     public class HCaptchaProxyless : AnticaptchaBase, IAnticaptchaTaskProtocol
     {

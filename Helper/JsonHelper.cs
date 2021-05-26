@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Newtonsoft.Json;
 
-namespace Anticaptcha_example.Helper
+namespace Anticaptcha.Helper
 {
     public class JsonHelper
     {

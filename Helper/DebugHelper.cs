@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Anticaptcha_example.Helper
+namespace Anticaptcha.Helper
 {
     public class DebugHelper
     {

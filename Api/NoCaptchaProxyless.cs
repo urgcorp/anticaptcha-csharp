@@ -4,7 +4,7 @@ using Anticaptcha.ApiResponse;
 
 namespace Anticaptcha.Api
 {
-    public class RecaptchaV2Proxyless : AnticaptchaBase, IAnticaptchaTaskProtocol
+    public class NoCaptchaProxyless : AnticaptchaBase, IAnticaptchaTaskProtocol
     {
         public Uri WebsiteUrl { protected get; set; }
         public string WebsiteKey { protected get; set; }
@@ -14,7 +14,7 @@ namespace Anticaptcha.Api
         {
             return new JObject
             {
-                {"type", "RecaptchaV2TaskProxyless"},
+                {"type", "NoCaptchaTaskProxyless"},
                 {"websiteURL", WebsiteUrl},
                 {"websiteKey", WebsiteKey},
                 {"websiteSToken", WebsiteSToken}

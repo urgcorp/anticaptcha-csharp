@@ -1,7 +1,7 @@
-﻿using Anticaptcha_example.Helper;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using Anticaptcha.Helper;
 
-namespace Anticaptcha_example.Api
+namespace Anticaptcha.Api
 {
     public class RecaptchaV2 : RecaptchaV2Proxyless
     {

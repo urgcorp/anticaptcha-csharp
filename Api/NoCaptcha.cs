@@ -3,7 +3,7 @@ using Anticaptcha.Helper;
 
 namespace Anticaptcha.Api
 {
-    public class RecaptchaV2Enterprise : RecaptchaV2EnterpriseProxyless
+    public class NoCaptcha : NoCaptchaProxyless
     {
         public string Cookies { protected get; set; }
         public string ProxyLogin { protected get; set; }
@@ -16,7 +16,7 @@ namespace Anticaptcha.Api
         public override JObject GetPostData()
         {
             var postData = base.GetPostData();
-            postData["type"] = "RecaptchaV2EnterpriseTask";
+            postData["type"] = "NoCaptchaTask";
 
             if (ProxyType == null || ProxyPort == null || ProxyPort < 1 || ProxyPort > 65535 ||
                 string.IsNullOrEmpty(ProxyAddress))

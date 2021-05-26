@@ -4,7 +4,7 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Anticaptcha_example.Helper
+namespace Anticaptcha.Helper
 {
     public class HttpHelper
     {

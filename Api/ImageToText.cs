@@ -1,9 +1,9 @@
-﻿using Anticaptcha_example.ApiResponse;
-using Anticaptcha_example.Helper;
+﻿using System.IO;
 using Newtonsoft.Json.Linq;
-using System.IO;
+using Anticaptcha.ApiResponse;
+using Anticaptcha.Helper;
 
-namespace Anticaptcha_example.Api
+namespace Anticaptcha.Api
 {
     public class ImageToText : AnticaptchaBase, IAnticaptchaTaskProtocol
     {

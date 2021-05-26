@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading;
-using Anticaptcha_example.ApiResponse;
-using Anticaptcha_example.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Anticaptcha.ApiResponse;
+using Anticaptcha.Helper;
 
-namespace Anticaptcha_example
+namespace Anticaptcha
 {
     public abstract class AnticaptchaBase
     {

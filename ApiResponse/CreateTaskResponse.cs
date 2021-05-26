@@ -1,6 +1,6 @@
-﻿using Anticaptcha_example.Helper;
+﻿using Anticaptcha.Helper;
 
-namespace Anticaptcha_example.ApiResponse
+namespace Anticaptcha.ApiResponse
 {
     public class CreateTaskResponse
     {

@@ -1,7 +1,7 @@
-﻿using Anticaptcha_example.ApiResponse;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using Anticaptcha.ApiResponse;
 
-namespace Anticaptcha_example
+namespace Anticaptcha
 {
     public interface IAnticaptchaTaskProtocol
     {
