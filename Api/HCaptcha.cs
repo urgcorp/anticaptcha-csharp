@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using Anticaptcha.Helper;
 
 namespace Anticaptcha.Api
@@ -12,6 +13,7 @@ namespace Anticaptcha.Api
         public string ProxyPassword { protected get; set; }
         public string UserAgent { protected get; set; }
         public string Cookies { protected get; set; }
+        public Dictionary<string, string> EnterprisePayload = new Dictionary<string, string>();
 
         public override JObject GetPostData()
         {
@@ -33,6 +35,8 @@ namespace Anticaptcha.Api
             postData.Add("proxyPassword", ProxyPassword);
             postData.Add("userAgent", UserAgent);
             postData.Add("cookies", Cookies);
+            if (EnterprisePayload.Count > 0)
+                postData["enterprisePayload"] = JObject.FromObject(EnterprisePayload);
 
             return postData;
         }
