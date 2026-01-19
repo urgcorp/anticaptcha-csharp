@@ -9,6 +9,7 @@ namespace Anticaptcha.Api
         public Uri WebsiteUrl { protected get; set; }
         public string TemplateName { protected get; set; }
         public JObject Variables { protected get; set; }
+        public JObject DomainsOfInterest { protected get; set; }
         public string ProxyAddress { protected get; set; }
         public int ProxyPort { protected get; set; }
         public string ProxyLogin { protected get; set; }
@@ -22,6 +23,10 @@ namespace Anticaptcha.Api
                 {"websiteURL", WebsiteUrl.ToString()},
                 {"templateName", TemplateName},
             };
+            if (Variables != null)
+                postData["variables"] = Variables;
+            if (DomainsOfInterest != null)
+                postData["domainsOfInterest"] = DomainsOfInterest;
 
             if (ProxyAddress != null && ProxyPort != 0)
             {
@@ -33,11 +38,6 @@ namespace Anticaptcha.Api
             {
                 postData["proxyLogin"] = ProxyLogin;
                 postData["proxyPassword"] = ProxyPassword;
-            }
-
-            if (Variables != null)
-            {
-                postData["variables"] = Variables;
             }
 
             return postData;
