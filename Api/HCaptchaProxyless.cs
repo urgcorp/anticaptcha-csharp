@@ -10,6 +10,7 @@ namespace Anticaptcha.Api
         public Uri WebsiteUrl { protected get; set; }
         public string WebsiteKey { protected get; set; }
         public string UserAgent { protected get; set; }
+        public bool IsInvisible { protected get; set; }
         public Dictionary<string, string> EnterprisePayload = new Dictionary<string, string>();
 
         public override JObject GetPostData()
@@ -20,6 +21,7 @@ namespace Anticaptcha.Api
                 {"websiteURL", WebsiteUrl},
                 {"websiteKey", WebsiteKey},
                 {"userAgent", UserAgent},
+                {"isInvisible", IsInvisible}
             };
             if (EnterprisePayload.Count > 0)
                 postData["enterprisePayload"] = JObject.FromObject(EnterprisePayload);

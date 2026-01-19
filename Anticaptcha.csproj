@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>2.1.4</AssemblyVersion>
-    <Version>2.1.4</Version>
+    <AssemblyVersion>2.1.5</AssemblyVersion>
+    <Version>2.1.5</Version>
   </PropertyGroup>
 
   <ItemGroup>

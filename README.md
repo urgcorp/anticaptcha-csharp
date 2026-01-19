@@ -1,6 +1,33 @@
 Вычищеный форк `anticaptcha-csharp`, который может формировать NuGet пакет
 
 # Examples
+## Recaptcha V2
+```csharp
+var api = new RecaptchaV2
+{
+    ClientKey = ClientKey,
+    WebsiteUrl = new Uri("http://http.myjino.ru/recaptcha/test-get.php"),
+    WebsiteKey = "6Lc_aCMTAAAAABx7u2W0WPXnVbI_v6ZdbM6rYf16",
+    UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116",
+    // proxy access parameters
+    ProxyType = AnticaptchaBase.ProxyTypeOption.Http,
+    ProxyAddress = "xx.xx.xx.xx",
+    ProxyPort = 8282,
+    ProxyLogin = "123",
+    ProxyPassword = "456"
+};
+
+// Use to set Recaptcha V2-invisible mode.
+// Note that V2-invisible and V3 are different captchas!
+// api.IsInvisible = true;
+
+if (!api.CreateTask())
+    Console.WriteLine($"API v2 send failed. {api.ErrorMessage}");
+else if (!api.WaitForResult())
+    Console.WriteLine($"Could not solve the captcha.");
+else
+    Console.WriteLine($"Result: {api.GetTaskSolution().GRecaptchaResponse}");
+```
 ## HCaptcha
 ```csharp
 var api = new HCaptchaProxyless
@@ -12,8 +39,10 @@ var api = new HCaptchaProxyless
     UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116"
 };
 
-// Use to set Hcaptcha Enterprise parameters like rqdata, sentry, apiEndpoint, endpoint, reportapi, assethost, imghost
+// use to set invisible mode
+// api.IsInvisible = true
 
+// Use to set Hcaptcha Enterprise parameters like rqdata, sentry, apiEndpoint, endpoint, reportapi, assethost, imghost
 // api.EnterprisePayload.Add("rqdata", "rqdata value from target website");
 // api.EnterprisePayload.Add("sentry", "true");
 
