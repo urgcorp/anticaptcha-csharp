@@ -101,3 +101,28 @@ if (!api.CreateTask())
 else if (!api.WaitForResult())
     Console.WriteLine($"Could not solve the captcha.");
 ```
+## FunCaptcha
+```csharp
+var api = new FunCaptcha
+{
+    ClientKey = ClientKey,
+    WebsiteUrl = new Uri("http://http.myjino.ru/funcaptcha_test/"),
+    WebsitePublicKey = "DE0B0BB7-1EE4-4D70-1853-31B835D4506B",
+    ApiJSSubdomain = "something.arkoselabs.com",
+    DataBlob = "{\"blob\":\"HERE_COMES_THE_blob_VALUE\"}",
+    UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116",
+    // proxy access parameters
+    ProxyType = AnticaptchaBase.ProxyTypeOption.Http,
+    ProxyAddress = "xx.xx.xx.xx",
+    ProxyPort = 8282,
+    ProxyLogin = "123",
+    ProxyPassword = "456"
+};
+
+if (!api.CreateTask())
+    Console.WriteLine($"API v2 send failed. {api.ErrorMessage}");
+else if (!api.WaitForResult())
+    Console.WriteLine($"Could not solve the captcha.");
+else
+    Console.WriteLine($"Result: {api.GetTaskSolution().Token}");
+```
