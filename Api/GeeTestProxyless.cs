@@ -20,11 +20,8 @@ namespace Anticaptcha.Api
                 {"gt", WebsiteKey},
                 {"challenge", WebsiteChallenge},
             };
-
             if (!string.IsNullOrEmpty(GeetestApiServerSubdomain))
-            {
                 postData["geetestApiServerSubdomain"] = GeetestApiServerSubdomain;
-            }
 
             return postData;
         }

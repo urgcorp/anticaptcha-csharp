@@ -24,15 +24,10 @@ namespace Anticaptcha.Api
                 {"gt", WebsiteKey},
                 {"version", 4},
             };
-
             if (!string.IsNullOrEmpty(GeetestApiServerSubdomain))
-            {
                 postData["geetestApiServerSubdomain"] = GeetestApiServerSubdomain;
-            }
             if (initParameters.Count > 0)
-            {
                 postData["initParameters"] = JObject.FromObject(initParameters);
-            }
 
             return postData;
         }
