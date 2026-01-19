@@ -4,6 +4,15 @@
 Allow you to earn 10% commission with app with code from https://anti-captcha.com/clients/tools/devcenter  
 All captcha APIs have `SoftId` property
 # Examples
+## Get AntiCaptcha Credits Balance
+```csharp
+var credits = api.GetCreditsBalance();
+
+if (credits == null)
+    Console.WriteLine($"GetCreditsBalance() failed. {api.ErrorMessage}");
+else
+    Console.WriteLine($"Credits balance: {balance}");
+```
 ## Recaptcha V2
 ```csharp
 var api = new RecaptchaV2

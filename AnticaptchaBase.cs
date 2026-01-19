@@ -90,6 +90,40 @@ namespace Anticaptcha
             return true;
         }
 
+        public double? GetCreditsBalance()
+        {
+            var jsonPostData = new JObject
+            {
+                ["clientKey"] = ClientKey
+            };
+
+            dynamic postResult = JsonPostRequest(ApiMethod.GetBalance, jsonPostData);
+
+            if (postResult == null || postResult.Equals(false))
+            {
+                DebugHelper.Out("API error", DebugHelper.Type.Error);
+                return null;
+            }
+
+            var balanceResponse = new BalanceResponse(postResult);
+
+            if (!balanceResponse.ErrorId.Equals(0))
+            {
+                ErrorMessage = balanceResponse.ErrorDescription;
+
+                DebugHelper.Out(
+                    "API error " + balanceResponse.ErrorId + ": " + balanceResponse.ErrorDescription,
+                    DebugHelper.Type.Error
+                );
+                return null;
+            }
+
+            if (balanceResponse.CaptchaCredits == null)
+                return 0;
+
+            return balanceResponse.CaptchaCredits;
+        }
+
         public bool WaitForResult(int maxSeconds = 120, int currentSecond = 0)
         {
             if (currentSecond >= maxSeconds)
@@ -195,15 +229,16 @@ namespace Anticaptcha
 
         public double? GetBalance()
         {
-            var jsonPostData = new JObject();
-            jsonPostData["clientKey"] = ClientKey;
+            var jsonPostData = new JObject
+            {
+                ["clientKey"] = ClientKey
+            };
 
             dynamic postResult = JsonPostRequest(ApiMethod.GetBalance, jsonPostData);
 
             if (postResult == null || postResult.Equals(false))
             {
                 DebugHelper.Out("API error", DebugHelper.Type.Error);
-
                 return null;
             }
 
