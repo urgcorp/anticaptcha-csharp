@@ -12,6 +12,8 @@ namespace Anticaptcha.Api
         public string Context { protected get; set; }
         public string CaptchaScript { protected get; set; }
         public string ChallengeScript { protected get; set; }
+        public string JsapiScript { protected get; set; }
+        public string WafType { protected get; set; }
 
         public override JObject GetPostData()
         {
@@ -23,7 +25,9 @@ namespace Anticaptcha.Api
                 {"iv", Iv},
                 {"context", Context},
                 {"captchaScript", CaptchaScript},
-                {"challengeScript", ChallengeScript}
+                {"challengeScript", ChallengeScript},
+                {"wafType", WafType},
+                {"jsapiScript", JsapiScript}
             };
         }
 
