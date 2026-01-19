@@ -47,16 +47,14 @@ var api = new HCaptchaProxyless
     ClientKey = ClientKey,
     WebsiteUrl = new Uri("http://democaptcha.com/"),
     WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc"
-    WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc",
-    UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116"
+    WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc"
 };
 
 // use to set invisible mode
-// api.IsInvisible = true
+// api.IsInvisible = true;
 
 // Use to set Hcaptcha Enterprise parameters like rqdata, sentry, apiEndpoint, endpoint, reportapi, assethost, imghost
-// api.EnterprisePayload.Add("rqdata", "rqdata value from target website");
-// api.EnterprisePayload.Add("sentry", "true");
+// api.IsEnterprise = true;
 
 if (!api.CreateTask())
     Console.WriteLine($"API v2 send failed. {api.ErrorMessage}");
