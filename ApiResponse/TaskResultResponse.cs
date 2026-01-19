@@ -94,12 +94,12 @@ namespace Anticaptcha.ApiResponse
         public string Ip { get; private set; }
 
         /// <summary>
-        ///     Task create time in UTC
+        /// Task create time in UTC
         /// </summary>
         public DateTime? CreateTime { get; private set; }
 
         /// <summary>
-        ///     Task end time in UTC
+        /// Task end time in UTC
         /// </summary>
         public DateTime? EndTime { get; private set; }
 
@@ -161,26 +161,70 @@ namespace Anticaptcha.ApiResponse
             /// Will be available for FunCaptcha tasks only!
             /// </summary>
             public string Token { get; internal set; }
+
             /// <summary>
-            /// Will be available for GeeTest tasks only
-            /// </summary>
-            public string Challenge;
-            /// <summary>
-            /// Will be available for GeeTest tasks only
-            /// </summary>
-            public string Seccode;
-            /// <summary>
-            /// Will be available for GeeTest tasks only
-            /// </summary>
-            public string Validate;
-            /// <summary>
-            /// // Will be available for Square tasks only
+            /// Will be available for Square tasks only
             /// </summary>
             public List<int> CellNumbers = new List<int>();
 
+            #region GeeTest
+
+            /// <summary>
+            /// Will be available for GeeTest tasks only
+            /// </summary>
+            public string Challenge { get; internal set; }
+            /// <summary>
+            /// Will be available for GeeTest tasks only
+            /// </summary>
+            public string Seccode { get; internal set; }
+            /// <summary>
+            /// Will be available for GeeTest tasks only
+            /// </summary>
+            public string Validate { get; internal set; }
+
+            #endregion
+
+            /// <summary>
+            /// Available for AntiGate tasks only!
+            /// </summary>
             public JObject Cookies { get; set; }
+            /// <summary>
+            /// Available for AntiGate tasks only!
+            /// </summary>
             public JObject LocalStorage { get; set; }
+            /// <summary>
+            /// Available for AntiGate tasks only!
+            /// </summary>
             public JObject Fingerprint { get; set; }
+
+            #region GeeTest V4
+
+            /// <summary>
+            /// Available for Geetest V4 only
+            /// </summary>
+            public string CaptchaId { get; internal set; }
+
+            /// <summary>
+            /// Available for Geetest V4 only
+            /// </summary>
+            public string LotNumber { get; internal set; }
+
+            /// <summary>
+            /// Available for Geetest V4 only
+            /// </summary>
+            public string PassToken { get; internal set; }
+
+            /// <summary>
+            /// Available for Geetest V4 only
+            /// </summary>
+            public string GenTime { get; internal set; }
+
+            /// <summary>
+            /// Available for Geetest V4 only
+            /// </summary>
+            public string CaptchaOutput { get; internal set; }            
+
+            #endregion
             public string Domain { get; set; }
         }
     }
