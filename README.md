@@ -1,5 +1,8 @@
 Вычищеный форк `anticaptcha-csharp`, который может формировать NuGet пакет
 
+### SoftId
+Allow you to earn 10% commission with app with code from https://anti-captcha.com/clients/tools/devcenter  
+All captcha APIs have `SoftId` property
 # Examples
 ## Recaptcha V2
 ```csharp

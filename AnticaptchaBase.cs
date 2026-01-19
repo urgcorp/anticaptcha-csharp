@@ -18,10 +18,19 @@ namespace Anticaptcha
 
         private const string Host = "api.anti-captcha.com";
         private const SchemeType Scheme = SchemeType.Https;
+
         public string ErrorMessage { get; private set; }
         public int TaskId { get; private set; }
         public string ClientKey { set; private get; }
+
+        /// <summary>
+        /// <para>Specify softId to earn 10% commission with your app.</para>
+        /// <para>Get your softId here: https://anti-captcha.com/clients/tools/devcenter</para>
+        /// </summary>
+        public int SoftId { set; private get; }
+
         public TaskResultResponse TaskInfo { get; protected set; }
+        
         public abstract JObject GetPostData();
 
         public bool CreateTask()
@@ -31,16 +40,18 @@ namespace Anticaptcha
             if (taskJson == null)
             {
                 DebugHelper.Out("A task preparing error.", DebugHelper.Type.Error);
-
                 return false;
             }
 
             // if you don't need to see the raw JSON request - comment the next line out
             DebugHelper.Out(taskJson.ToString(), DebugHelper.Type.Info);
 
-            var jsonPostData = new JObject();
-            jsonPostData["clientKey"] = ClientKey;
-            jsonPostData["task"] = taskJson;
+            var jsonPostData = new JObject()
+            {
+                {"clientKey", ClientKey},
+                {"task", taskJson},
+                {"softId", SoftId}
+            };
 
             DebugHelper.Out("Connecting to " + Host, DebugHelper.Type.Info);
             dynamic postResult = JsonPostRequest(ApiMethod.CreateTask, jsonPostData);
