@@ -7,6 +7,15 @@ namespace Anticaptcha.Api
 {
     public class ImageToText : AnticaptchaBase, IAnticaptchaTaskProtocol
     {
+        /// <summary>
+        /// English-speaking queue (Default)
+        /// </summary>
+        public const string EN_LANGUAGE_POOL = "en";
+        /// <summary>
+        /// Russia, Ukraine, Belarus, Kazakhstan
+        /// </summary>
+        public const string RU_LANG_POOL = "rn";
+
         public enum NumericOption
         {
             NoRequirements,
@@ -23,6 +32,7 @@ namespace Anticaptcha.Api
             Math = 0;
             MinLength = 0;
             MaxLength = 0;
+            LanguagePool = "en";
         }
 
         public string BodyBase64 { private get; set; }
@@ -56,6 +66,7 @@ namespace Anticaptcha.Api
         public int Math { private get; set; }
         public int MinLength { private get; set; }
         public int MaxLength { private get; set; }
+        public string LanguagePool { private get; set; }
 
         public override JObject GetPostData()
         {
@@ -73,7 +84,8 @@ namespace Anticaptcha.Api
                 {"numeric", Numeric.Equals(NumericOption.NoRequirements) ? 0 : Numeric.Equals(NumericOption.NumbersOnly) ? 1 : 2},
                 {"math", Math},
                 {"minLength", MinLength},
-                {"maxLength", MaxLength}
+                {"maxLength", MaxLength},
+                {"languagePool", LanguagePool}
             };
         }
 

@@ -13,6 +13,30 @@ if (credits == null)
 else
     Console.WriteLine($"Credits balance: {balance}");
 ```
+## ImageToText
+Additional flags, see https://anti-captcha.com/apidoc/task-types/ImageToTextTask for details
+```csharp
+var api = new ImageToText
+{
+    ClientKey = ClientKey,
+    FilePath = "captcha.jpg"
+
+    // Phrase = false,      // 2 words
+    // Case = false,        // case sensitivity
+    // Numeric = 1,         // numbers only
+    // Math = 1,            // math operation like result of 50+5
+    // MinLength = 1,       // minimum length of solution
+    // MaxLength = 10,      // maximum length
+    // LanguagePool = "en"  // language pool, see docs for available pools
+};
+
+if (!api.CreateTask())
+    Console.WriteLine($"API v2 send failed. {api.ErrorMessage}");
+else if (!api.WaitForResult())
+    Console.WriteLine($"Could not solve the captcha.");
+else
+    Console.WriteLine($"Result: {api.GetTaskSolution().Text}");
+```
 ## Recaptcha V2
 ```csharp
 var api = new RecaptchaV2
