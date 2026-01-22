@@ -91,7 +91,7 @@ namespace Anticaptcha.Client
             try
             {
                 if (requestDelayMs > _config.InitialDelayThresholdMs)
-                    await Task.Delay(requestDelayMs, token);
+                    await Task.Delay(requestDelayMs, token).ConfigureAwait(false);
 
                 while (!IsCompleted)
                 {
@@ -125,7 +125,7 @@ namespace Anticaptcha.Client
                     }
 
                     // Если токен отменен, Delay выбросит исключение и мы уйдем в финальный catch
-                    await Task.Delay(_config.PollingTimeoutMs, token);
+                    await Task.Delay(_config.PollingTimeoutMs, token).ConfigureAwait(false);
                 }
             }
             catch (OperationCanceledException) when (timeoutCts.IsCancellationRequested)
