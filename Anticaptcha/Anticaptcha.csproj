@@ -7,8 +7,8 @@
     <!-- NuGet Package Settings -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyVersion>3.0.0</AssemblyVersion>
-    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.1</AssemblyVersion>
+    <Version>3.0.1</Version>
     <Authors>CaCTuCaTu4ECKuu</Authors>
     <RepositoryUrl>https://github.com/urgcorp/anticaptcha-csharp</RepositoryUrl>
     <PackageTags>captcha;api</PackageTags>

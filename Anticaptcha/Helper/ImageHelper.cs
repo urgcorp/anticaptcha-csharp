@@ -3,19 +3,22 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 namespace Anticaptcha.Helper
 {
     /// <summary>
-    /// Оптимизирован для файлов небоьлшого размера
+    /// Оптимизирован для файлов небольшого размера
     /// </summary>
     public static class ImageHelper
     {
         /// <summary>
-        /// Максимальный поддерживаемый сервисом размер изображениий в байтах
+        /// Максимальный поддерживаемый сервисом размер изображений в байтах
         /// </summary>
         public const long AnticaptchaMaxBytes = 500_000;
 
-        public static string ImageStreamToBase64String(MemoryStream stream, long maxSizeInBytes = AnticaptchaMaxBytes)
+        public static string? ImageStreamToBase64String(MemoryStream stream, long maxSizeInBytes = AnticaptchaMaxBytes)
         {
             if (stream == null || stream.Length == 0)
                 return null;
@@ -25,7 +28,7 @@ namespace Anticaptcha.Helper
             return Convert.ToBase64String(stream.GetBuffer(), 0, (int)stream.Length);
         }
 
-        public static string ImageStreamToBase64String(Stream stream, long maxSizeInBytes = AnticaptchaMaxBytes)
+        public static string? ImageStreamToBase64String(Stream stream, long maxSizeInBytes = AnticaptchaMaxBytes)
         {
             if (stream == null || !stream.CanRead)
                 return null;
@@ -33,11 +36,14 @@ namespace Anticaptcha.Helper
             if (stream.CanSeek)
             {
                 ThrowIfSizeExceededException(stream.Length, maxSizeInBytes);
-                stream.Position = 0;
+                if (stream.Position != 0)
+                    stream.Position = 0;
             }
 
             // Create with initial capacity
-            using var memoryStream = new MemoryStream(stream.CanSeek ? (int)stream.Length : 1024);
+            using var memoryStream = stream.CanSeek
+                ? new MemoryStream((int)stream.Length)
+                : new MemoryStream();
 
             byte[] buffer = new byte[8192];
             int bytesRead;
@@ -49,10 +55,10 @@ namespace Anticaptcha.Helper
                 memoryStream.Write(buffer, 0, bytesRead);
             }
 
-            return ImageStreamToBase64String(memoryStream);
+            return ImageStreamToBase64String(memoryStream, maxSizeInBytes);
         }
 
-        public static async Task<string> ImageStreamToBase64StringAsync(Stream stream, long maxSizeInBytes = AnticaptchaMaxBytes,
+        public static async Task<string?> ImageStreamToBase64StringAsync(Stream stream, long maxSizeInBytes = AnticaptchaMaxBytes,
             CancellationToken cancellationToken = default)
         {
             if (stream == null || !stream.CanRead)
@@ -61,11 +67,14 @@ namespace Anticaptcha.Helper
             if (stream.CanSeek)
             {
                 ThrowIfSizeExceededException(stream.Length, maxSizeInBytes);
-                stream.Position = 0;
+                if (stream.Position != 0)
+                    stream.Position = 0;
             }
 
             // Create with initial capacity
-            using var memoryStream = new MemoryStream(stream.CanSeek ? (int)stream.Length : 1024);
+            using var memoryStream = stream.CanSeek
+                ? new MemoryStream((int)stream.Length)
+                : new MemoryStream();
 
             // Копируем поток по частям, проверяя размер в процессе (важно для сетевых потоков)
             byte[] buffer = new byte[8192];
@@ -78,16 +87,10 @@ namespace Anticaptcha.Helper
                 await memoryStream.WriteAsync(buffer, 0, bytesRead, cancellationToken).ConfigureAwait(false);
             }
 
-            if (memoryStream.Length == 0)
-                return null;
-
-            // Используем асинхронное копирование для сетевых потоков
-            await stream.CopyToAsync(memoryStream, cancellationToken).ConfigureAwait(false);
-    
-            return Convert.ToBase64String(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+            return ImageStreamToBase64String(memoryStream, maxSizeInBytes);
         }
 
-        public static string ImageFileToBase64String(string path, long maxSizeInBytes = AnticaptchaMaxBytes)
+        public static string? ImageFileToBase64String(string path, long maxSizeInBytes = AnticaptchaMaxBytes)
         {
             if (!File.Exists(path))
                 return null;
@@ -109,7 +112,7 @@ namespace Anticaptcha.Helper
             }
         }
 
-        public static async Task<string> ImageFileToBase64StringAsync(string path, long maxSizeInBytes = AnticaptchaMaxBytes,
+        public static async Task<string?> ImageFileToBase64StringAsync(string path, long maxSizeInBytes = AnticaptchaMaxBytes,
             CancellationToken ct = default)
         {
             if (!File.Exists(path))
