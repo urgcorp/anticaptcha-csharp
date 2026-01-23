@@ -40,7 +40,8 @@ logger.LogInformation("Balance: $ {balance}", balance.BalanceUSD);
 
 var imgCaptcha = new ImageToText()
 {
-    ImageBodyBase64 = ImageHelper.ImageFileToBase64String("CaptchaImages/example.jpg"),
+    ImageBodyBase64 = ImageHelper.ImageFileToBase64String("CaptchaImages/example.jpg")
+                      ?? throw new ApplicationException("Captcha example image not found"),
     Case = true
 };
 

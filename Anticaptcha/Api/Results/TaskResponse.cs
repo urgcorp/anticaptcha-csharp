@@ -45,7 +45,7 @@ namespace Anticaptcha.Api.Results
         /// </summary>
         [JsonProperty("endTime")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// Количество работников, которые пытались решить вашу задачу.
